@@ -19,20 +19,22 @@ export default function LeftMenu({
   };
 
   return (
-    <ul className="absolute left-5 top-5 z-10">
-      <MenuItem name="pdf" onClick={createPDF} tooltip="Descargar en PDF" />
-      <MenuItem
-        name="image"
-        onClick={() => {
-          console.log("bajar en imagen");
-        }}
-        tooltip="Descargar en image -- próximamente"
-      />
-      <MenuItem
-        name="confetti"
-        onClick={toggleConfetti}
-        tooltip="Explosión de confetti"
-      />
-    </ul>
+    <div className="justify-left flex w-full">
+      <ul className="absolute top-2 z-10 flex pl-3 sm:pl-0 md:left-5 lg:block">
+        <MenuItem name="pdf" onClick={createPDF} tooltip="Descargar en PDF" />
+        <MenuItem
+          name="image"
+          onClick={() => {
+            console.log("bajar en imagen");
+          }}
+          tooltip="Descargar en image -- próximamente"
+        />
+        <MenuItem
+          name="confetti"
+          onClick={toggleConfetti}
+          tooltip="Explosión de confetti"
+        />
+      </ul>
+    </div>
   );
 }

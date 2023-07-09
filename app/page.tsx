@@ -13,7 +13,7 @@ export default function Page() {
 
   return (
     <div
-      className="relative flex min-h-screen flex-col items-center sm:px-5 sm:pt-[calc(10vh)]"
+      className="relative flex min-h-screen flex-col items-center pt-5 sm:px-5 sm:pt-[calc(10vh)]"
       id="pdf"
     >
       {confetti && (

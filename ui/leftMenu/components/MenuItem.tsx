@@ -15,11 +15,17 @@ export default function MenuItem({
   const icon = useMemo(() => {
     switch (name) {
       case "pdf":
-        return <PDFIcon />;
+        return (
+          <PDFIcon className="h-[18px] w-[18px] sm:h-[24px] sm:w-[24px]" />
+        );
       case "image":
-        return <ImageIcon />;
+        return (
+          <ImageIcon className="h-[20px] w-[20px] sm:h-[24px] sm:w-[24px]" />
+        );
       case "confetti":
-        return <MagicIcon className="h-[24px] w-[24px]" />;
+        return (
+          <MagicIcon className="h-[20px] w-[20px] sm:h-[24px] sm:w-[24px]" />
+        );
       default:
         break;
     }
