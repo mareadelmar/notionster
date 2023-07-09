@@ -17,7 +17,6 @@ import {
   Heading3,
   List,
   ListOrdered,
-  MessageSquarePlus,
   Text,
   TextQuote,
   Image as ImageIcon,
@@ -27,7 +26,6 @@ import {
 import LoadingCircle from "@/ui/icons/loading-circle";
 import { toast } from "sonner";
 import va from "@vercel/analytics";
-import Magic from "@/ui/icons/magic";
 import { getPrevText } from "@/lib/editor";
 import { startImageUpload } from "@/ui/editor/plugins/upload-images";
 
@@ -74,21 +72,6 @@ const Command = Extension.create({
 
 const getSuggestionItems = ({ query }: { query: string }) => {
   return [
-    {
-      title: "Continue writing",
-      description: "Use AI to expand your thoughts.",
-      searchTerms: ["gpt"],
-      icon: <Magic className="w-7" />,
-    },
-    {
-      title: "Send Feedback",
-      description: "Let us know how we can improve.",
-      icon: <MessageSquarePlus size={18} />,
-      command: ({ editor, range }: CommandProps) => {
-        editor.chain().focus().deleteRange(range).run();
-        window.open("/feedback", "_blank");
-      },
-    },
     {
       title: "Text",
       description: "Just start typing with plain text.",
