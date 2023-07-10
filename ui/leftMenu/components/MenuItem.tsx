@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import PDFIcon from "@/ui/icons/pdf";
 import ImageIcon from "@/ui/icons/image";
 import MagicIcon from "@/ui/icons/magic";
+import CopyIcon from "@/ui/icons/copy";
 
 export default function MenuItem({
   onClick,
@@ -26,13 +27,17 @@ export default function MenuItem({
         return (
           <MagicIcon className="h-[20px] w-[20px] sm:h-[24px] sm:w-[24px]" />
         );
+      case "copy":
+        return (
+          <CopyIcon className="h-[22px] w-[22px] sm:h-[24px] sm:w-[24px]" />
+        );
       default:
         break;
     }
   }, [name]);
 
   return (
-    <li className="py-2">
+    <li className="px-2 py-1">
       <div
         id={`tooltip-${name}`}
         role="tooltip"
@@ -46,6 +51,7 @@ export default function MenuItem({
           role="icon"
           type="button"
           data-tooltip-target={`tooltip-${name}`}
+          // disabled={name === "copy"}
         >
           {icon}
         </button>

@@ -1,6 +1,7 @@
 import MenuItem from "./components/MenuItem";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
+// import { useCopyToClipboard } from "@/lib/hooks/use-copy-to-clipboard";
 
 export default function LeftMenu({
   toggleConfetti,
@@ -18,6 +19,12 @@ export default function LeftMenu({
     pdf.save("shipping_label.pdf");
   };
 
+  // const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 2000 });
+  // const onCopy = () => {
+  //   if (isCopied) return
+  //   //copyToClipboard(value)
+  // }
+
   return (
     <div className="justify-left flex w-full">
       <ul className="absolute top-2 z-10 flex pl-3 sm:pl-0 md:left-5 lg:block">
@@ -33,6 +40,13 @@ export default function LeftMenu({
           name="confetti"
           onClick={toggleConfetti}
           tooltip="Explosión de confetti"
+        />
+        <MenuItem
+          name="copy"
+          onClick={() => {
+            console.log("copiar");
+          }}
+          tooltip="Copiar como texto"
         />
       </ul>
     </div>

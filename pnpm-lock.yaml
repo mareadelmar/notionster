@@ -80,6 +80,9 @@ dependencies:
   clsx:
     specifier: ^1.2.1
     version: 1.2.1
+  cohere-ai:
+    specifier: ^6.2.2
+    version: 6.2.2
   eslint:
     specifier: 8.36.0
     version: 8.36.0
@@ -4586,6 +4589,10 @@ packages:
 
   /code-block-writer@10.1.1:
     resolution: {integrity: sha512-67ueh2IRGst/51p0n6FvPrnRjAGHY5F8xdjkgrYE7DDzpJe6qA07RYQ9VcoUeo5ATOjSOiWpSL3SWBRRbempMw==}
+    dev: false
+
+  /cohere-ai@6.2.2:
+    resolution: {integrity: sha512-+Tq+4e8N/YWKJqFpWaULsfbZR/GOvGh8WWYFKR1bpipu8bCok3VcbTPnBmIToQiIqOgFpGk3HsA4b0guVyL3vg==}
     dev: false
 
   /color-convert@1.9.3:
