@@ -25,9 +25,10 @@ import {
 } from "lucide-react";
 import LoadingCircle from "@/ui/icons/loading-circle";
 import { toast } from "sonner";
-import va from "@vercel/analytics";
+// import va from "@vercel/analytics";
 import { getPrevText } from "@/lib/editor";
 import { startImageUpload } from "@/ui/editor/plugins/upload-images";
+import Magic from "@/ui/icons/magic";
 
 interface CommandItemProps {
   title: string;
@@ -72,6 +73,12 @@ const Command = Extension.create({
 
 const getSuggestionItems = ({ query }: { query: string }) => {
   return [
+    {
+      title: "Continue writing",
+      description: "Use AI to expand your thoughts.",
+      searchTerms: ["gpt"],
+      icon: <Magic className="w-7" />,
+    },
     {
       title: "Text",
       description: "Just start typing with plain text.",
@@ -240,21 +247,29 @@ const CommandList = ({
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const { complete, isLoading } = useCompletion({
-    id: "novel",
+    id: "notionster",
     api: "/api/generate",
     onResponse: (response) => {
       if (response.status === 429) {
         toast.error("You have reached your request limit for the day.");
-        va.track("Rate Limit Reached");
         return;
+      } else if (response.status !== 200) {
+        toast.error("Something went wrong.");
       }
+      // delete slash character
       editor.chain().focus().deleteRange(range).run();
     },
     onFinish: (_prompt, completion) => {
+      const data = JSON.parse(completion).generations[0].text.replaceAll(
+        "\n\n",
+        " ",
+      );
+      const lastIndex = data.lastIndexOf(".");
+      editor.commands.insertContent(data.slice(0, lastIndex + 1));
       // highlight the generated text
       editor.commands.setTextSelection({
         from: range.from,
-        to: range.from + completion.length,
+        to: range.from + data.length,
       });
     },
     onError: () => {
@@ -265,9 +280,6 @@ const CommandList = ({
   const selectItem = useCallback(
     (index: number) => {
       const item = items[index];
-      va.track("Slash Command Used", {
-        command: item.title,
-      });
       if (item) {
         if (item.title === "Continue writing") {
           complete(
